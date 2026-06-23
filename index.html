@@ -1,47 +1,156 @@
+```html
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>Kalkulator Sederhana</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalkulator Sederhana</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background: linear-gradient(135deg,#667eea,#764ba2);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.container{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    width:350px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+h1{
+    text-align:center;
+    margin-bottom:20px;
+    color:#333;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:8px 0;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:16px;
+}
+
+.button-group{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    margin-top:15px;
+}
+
+button{
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+.hasil{
+    margin-top:20px;
+    text-align:center;
+    background:#f4f4f4;
+    padding:15px;
+    border-radius:10px;
+}
+
+.footer{
+    margin-top:15px;
+    text-align:center;
+    color:#666;
+    font-size:12px;
+}
+</style>
+
 </head>
 <body>
-    <h1>Kalkulator Sederhana</h1>
 
-    <input type="number" id="a" placeholder="Angka pertama">
-    <input type="number" id="b" placeholder="Angka kedua">
+<div class="container">
 
-    <br><br>
+    <h1>🧮 Kalkulator</h1>
 
-    <button onclick="hitung('+')">+</button>
-    <button onclick="hitung('-')">-</button>
-    <button onclick="hitung('*')">*</button>
-    <button onclick="hitung('/')">/</button>
+    <input type="number" id="a" placeholder="Masukkan angka pertama">
 
-    <h2 id="hasil">Hasil: -</h2>
+    <input type="number" id="b" placeholder="Masukkan angka kedua">
 
-    <script>
-        function hitung(operator) {
-            let a = parseFloat(document.getElementById("a").value);
-            let b = parseFloat(document.getElementById("b").value);
-            let hasil = 0;
+    <div class="button-group">
+        <button onclick="hitung('+')">+</button>
+        <button onclick="hitung('-')">−</button>
+        <button onclick="hitung('*')">×</button>
+        <button onclick="hitung('/')">÷</button>
+    </div>
 
-            switch(operator) {
-                case '+':
-                    hasil = a + b;
-                    break;
-                case '-':
-                    hasil = a - b;
-                    break;
-                case '*':
-                    hasil = a * b;
-                    break;
-                case '/':
-                    hasil = a / b;
-                    break;
+    <div class="hasil">
+        <h2 id="hasil">Hasil: -</h2>
+    </div>
+
+    <div class="footer">
+        Cloud Hosting Demo - GitHub Pages
+    </div>
+
+</div>
+
+<script>
+function hitung(operator){
+
+    let a = parseFloat(document.getElementById("a").value);
+    let b = parseFloat(document.getElementById("b").value);
+
+    if(isNaN(a) || isNaN(b)){
+        document.getElementById("hasil").innerHTML =
+        "Hasil: Masukkan angka terlebih dahulu";
+        return;
+    }
+
+    let hasil;
+
+    switch(operator){
+        case '+':
+            hasil = a + b;
+            break;
+
+        case '-':
+            hasil = a - b;
+            break;
+
+        case '*':
+            hasil = a * b;
+            break;
+
+        case '/':
+            if(b === 0){
+                document.getElementById("hasil").innerHTML =
+                "Hasil: Tidak bisa dibagi 0";
+                return;
             }
+            hasil = a / b;
+            break;
+    }
 
-            document.getElementById("hasil").innerHTML =
-                "Hasil: " + hasil;
-        }
-    </script>
+    document.getElementById("hasil").innerHTML =
+    "Hasil: " + hasil;
+}
+</script>
+
 </body>
 </html>
+```
